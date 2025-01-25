@@ -1,46 +1,62 @@
-// scripts.js
-document.addEventListener("DOMContentLoaded", function () {
-  const mobileMenuIcon = document.getElementById("mobile-menu-icon");
-  const mobileNavLinks = document.getElementById("mobile-nav-links");
+function toggleMenu() {
+  const navMenu = document.getElementById("navMenu");
+  navMenu.classList.toggle("active");
+}
 
-  mobileMenuIcon.addEventListener("click", function () {
-    if (mobileNavLinks.style.display === "block") {
-      mobileNavLinks.style.display = "none";
-    } else {
-      mobileNavLinks.style.display = "block";
-    }
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  alert("Thank you for your inquiry! We will contact you soon.");
+  this.reset();
+});
+
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute("href")).scrollIntoView({
+      behavior: "smooth",
+    });
   });
 });
 
-document
-  .getElementById("contact-form")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
+// Add scroll effect to header
+window.addEventListener("scroll", () => {
+  const header = document.querySelector("header");
+  header.style.background =
+    window.scrollY > 50 ? "rgba(44, 62, 80, 0.9)" : "rgb(44, 62, 80)";
+});
 
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
+const slideshowImages = ["images/slideshow1.jpeg", "images/slideshow2.jpg"];
 
-    fetch(
-      "https://script.google.com/macros/s/AKfycbxwDSI9BJFHMCjdvsRzbysifB4EIlJR8vCjx0Sjh4EYOrZ1hSgiiA1Gy6uamLPe-Wq_/exec",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name: name, email: email, message: message }),
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.status === "success") {
-          alert("Your message has been sent successfully!");
-        } else {
-          alert("There was an error sending your message. Please try again.");
-        }
-      })
-      .catch((error) => {
-        alert("There was an error sending your message. Please try again.");
-        console.error("Error:", error);
-      });
+function createSlideshow() {
+  const slideshowContainer = document.getElementById("heroSlideshow");
+
+  // Create slide elements
+  slideshowImages.forEach((imageUrl, index) => {
+    const slide = document.createElement("div");
+    slide.classList.add("hero-slide");
+    slide.style.backgroundImage = `url('${imageUrl}')`;
+
+    // First slide starts active
+    if (index === 0) slide.classList.add("active");
+
+    slideshowContainer.appendChild(slide);
   });
+
+  // Slideshow logic
+  let currentSlide = 0;
+  setInterval(() => {
+    const slides = document.querySelectorAll(".hero-slide");
+
+    // Remove active class from current slide
+    slides[currentSlide].classList.remove("active");
+
+    // Move to next slide
+    currentSlide = (currentSlide + 1) % slides.length;
+
+    // Add active class to next slide
+    slides[currentSlide].classList.add("active");
+  }, 5000); // Change slide every 5 seconds
+}
+
+// Call slideshow function when page loads
+window.addEventListener("load", createSlideshow);

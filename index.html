@@ -3,174 +3,126 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rajee Tours & Travels</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
     <link rel="stylesheet" href="style.css" />
+    <title>Rajee Tours - Explore Sri Lanka</title>
   </head>
   <body>
-    <!-- Top Navigation -->
-    <nav id="top-nav">
-      <div class="container">
-        <!-- <a href="#" class="logo">Lemon Holidays</a> -->
-        <ul class="nav-links">
-          <li>
-            <a href="#banner"><i class="fa-regular fa-lemon"></i></a>
-          </li>
-          <!-- <li><a href="#about-us">About Us</a></li> -->
-          <li>
-            <a href="#destinations"
-              ><i class="fa-solid fa-map-location-dot"></i
-            ></a>
-          </li>
-          <li>
-            <a href="#packages"
-              ><i class="fa-solid fa-arrows-turn-to-dots"></i
-            ></a>
-          </li>
-          <li>
-            <a href="#testimonials"><i class="fa-solid fa-award"></i></a>
-          </li>
-          <li>
-            <a href="#contact-us"><i class="fa-regular fa-comments"></i></a>
-          </li>
+    <header>
+      <nav class="container">
+        <div class="logo">Rajee Tours</div>
+        <div class="hamburger" onclick="toggleMenu()">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+        <ul id="navMenu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#packages">Tours</a></li>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="mobile-menu-icon" id="mobile-menu-icon">
-          <i class="fa-regular fa-lemon"></i>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-slideshow" id="heroSlideshow"></div>
+        <div class="hero-content container">
+          <h1>Discover the Wonders of Sri Lanka</h1>
+          <p>
+            Ancient cultures, pristine beaches, lush landscapes - Experience it
+            all with Rajee Tours
+          </p>
+          <a href="#packages" class="btn">Explore Journeys</a>
         </div>
-      </div>
-      <ul class="mobile-nav-links" id="mobile-nav-links">
-        <li><a href="#banner">Home</a></li>
-        <li><a href="#about-us">About Us</a></li>
-        <li><a href="#destinations">Destinations</a></li>
-        <li><a href="#packages">Packages</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact-us">Contact Us</a></li>
-      </ul>
-    </nav>
+      </section>
 
-    <!-- Banner -->
-    <section id="banner">
-      <div class="container">
-        <h1>Welcome to Rajee Tours & Travels</h1>
-        <p>Your gateway to the best travel experiences in Sri Lanka</p>
-      </div>
-    </section>
-
-    <!-- About Us -->
-    <section id="about-us">
-      <div class="container">
-        <h2>About Us</h2>
-        <p>
-          Rajee Tours & Travels is a premier travel company specializing in
-          inbound tours within Sri Lanka. Our mission is to provide
-          unforgettable travel experiences that showcase the beauty and culture
-          of this amazing island nation.
-        </p>
-      </div>
-    </section>
-
-    <!-- Destinations in Sri Lanka -->
-    <section id="destinations">
-      <div class="container">
-        <h2>Destinations in Sri Lanka</h2>
-        <div class="destinations-grid">
-          <div class="destination">
-            <h3>Colombo</h3>
-            <p>Experience the vibrant capital city of Sri Lanka.</p>
-          </div>
-          <div class="destination">
-            <h3>Kandy</h3>
-            <p>Visit the cultural heart of Sri Lanka.</p>
-          </div>
-          <div class="destination">
-            <h3>Galle</h3>
-            <p>Explore the historic coastal city.</p>
-          </div>
-          <div class="destination">
-            <h3>Sigiriya</h3>
-            <p>Discover the ancient rock fortress.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Most Popular Packages -->
-    <section id="packages">
-      <div class="container">
-        <h2>Most Popular Packages</h2>
-        <div class="packages-grid">
+      <section id="packages" class="container">
+        <h2>Our Signature Tours</h2>
+        <div class="tour-packages">
           <div class="package">
-            <h3>Beach Escape</h3>
-            <p>7 days of sun, sea, and sand.</p>
+            <img src="images/slideshow1.jpg" alt="Cultural Tour" />
+            <div class="package-content">
+              <h3>Cultural Triangle Expedition</h3>
+              <p>
+                Explore Sigiriya, Anuradhapura, and Polonnaruwa - UNESCO World
+                Heritage sites
+              </p>
+              <a href="#contact" class="btn">Book Now</a>
+            </div>
           </div>
           <div class="package">
-            <h3>Cultural Tour</h3>
-            <p>Experience the rich heritage of Sri Lanka.</p>
+            <img src="images/slideshow2.jpg" alt="Coastal Tour" />
+            <div class="package-content">
+              <h3>Tropical Coast Adventure</h3>
+              <p>
+                Discover pristine beaches, marine life, and coastal traditions
+              </p>
+              <a href="#contact" class="btn">Book Now</a>
+            </div>
           </div>
           <div class="package">
-            <h3>Adventure Trip</h3>
-            <p>10 days of thrilling adventures.</p>
+            <img src="images/slideshow5.jpg" alt="Wildlife Safari" />
+            <div class="package-content">
+              <h3>Wildlife & Nature Safari</h3>
+              <p>
+                Yala, Udawalawe, and Wilpattu National Parks - Encounter exotic
+                wildlife
+              </p>
+              <a href="#contact" class="btn">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="destinations" class="container">
+        <h2>Must-Visit Destinations</h2>
+        <div class="tour-packages">
+          <div class="package">
+            <img src="images/sigiriya.jpg" alt="Sigiriya" />
+            <div class="package-content">
+              <h3>Sigiriya Rock Fortress</h3>
+              <p>Ancient marvel rising from the central plains</p>
+            </div>
           </div>
           <div class="package">
-            <h3>Wildlife Safari</h3>
-            <p>Get close to nature with our wildlife tours.</p>
+            <img src="images/kandy.jpg" alt="Kandy" />
+            <div class="package-content">
+              <h3>Kandy</h3>
+              <p>Cultural capital with the sacred Temple of the Tooth</p>
+            </div>
+          </div>
+          <div class="package">
+            <img src="images/lkbear.jpg" alt="Yala" />
+            <div class="package-content">
+              <h3>Yala National Park</h3>
+              <p>World-renowned wildlife sanctuary</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Testimonials -->
-    <section id="testimonials">
-      <div class="container">
-        <h2>Testimonials</h2>
-        <div class="testimonials-grid">
-          <div class="testimonial">
-            <p>"Rajee made our trip to Sri Lanka unforgettable!" - Jane Doe</p>
-          </div>
-          <div class="testimonial">
-            <p>"Excellent service and amazing destinations!" - John Smith</p>
-          </div>
-          <div class="testimonial">
-            <p>
-              "Highly recommend for anyone looking to explore Sri Lanka." - Mary
-              Johnson
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Us -->
-    <section id="contact-us">
-      <div class="container">
-        <h2>Contact Us</h2>
-        <form id="contact-form">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" required />
-
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
-
-          <label for="message">Message</label>
-          <textarea id="message" name="message" required></textarea>
-
-          <button type="submit">Send Message</button>
+      <section id="contact" class="container">
+        <h2>Plan Your Sri Lankan Adventure</h2>
+        <form class="contact-form" id="contactForm">
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <input type="tel" placeholder="Phone Number" />
+          <textarea
+            placeholder="Describe your dream Sri Lankan journey"
+            rows="5"
+            required
+          ></textarea>
+          <button type="submit" class="btn">Send Inquiry</button>
         </form>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <!-- Footer -->
-    <footer id="footer">
-      <div class="container">
-        <p>&copy; 2024 Rajee Tours & Travels. All Rights Reserved.</p>
-      </div>
+    <footer>
+      <p>&copy; 2024 Rajee Tours | Explore Sri Lanka</p>
+      <p>📞 +94 76 99 33 742 or +94 77 22 49 558 | ✉️ rajeetours@yahoo.com</p>
     </footer>
+
     <script src="app1.js"></script>
   </body>
 </html>
