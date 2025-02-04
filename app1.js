@@ -36,6 +36,9 @@ const slideshowImages = [
 function createSlideshow() {
   const slideshowContainer = document.getElementById("heroSlideshow");
 
+  // Ensure container is empty before adding slides
+  slideshowContainer.innerHTML = "";
+
   // Create slide elements
   slideshowImages.forEach((imageUrl, index) => {
     const slide = document.createElement("div");
@@ -64,29 +67,55 @@ function createSlideshow() {
   }, 5000); // Change slide every 5 seconds
 }
 
-// Package details interaction
-document.addEventListener("DOMContentLoaded", () => {
+// Package details interaction for mobile and desktop
+function setupPackageInteraction() {
   const packages = document.querySelectorAll(".package");
 
-  if (window.matchMedia("(max-width: 768px)").matches) {
-    packages.forEach((pkg) => {
-      const seeMoreButton = pkg.querySelector(".see-more");
-      const packageDetails = pkg.querySelector(".package-details");
+  packages.forEach((pkg) => {
+    const packageDetails = pkg.querySelector(".package-details");
 
-      seeMoreButton.addEventListener("click", (e) => {
-        e.stopPropagation();
-        packageDetails.style.display =
-          packageDetails.style.display === "block" ? "none" : "block";
+    // Desktop hover effect
+    if (window.matchMedia("(hover: hover)").matches) {
+      pkg.addEventListener("mouseenter", () => {
+        packageDetails.style.display = "block";
+        packageDetails.style.opacity = "1";
+        packageDetails.style.transform = "translateY(0)";
       });
 
-      document.addEventListener("click", (e) => {
-        if (!pkg.contains(e.target)) {
+      pkg.addEventListener("mouseleave", () => {
+        packageDetails.style.display = "none";
+        packageDetails.style.opacity = "0";
+        packageDetails.style.transform = "translateY(-100%)";
+      });
+    }
+    // Mobile click interaction
+    else {
+      pkg.addEventListener("click", (e) => {
+        // Toggle visibility of package details
+        if (packageDetails.style.display === "block") {
           packageDetails.style.display = "none";
+          packageDetails.style.opacity = "0";
+          packageDetails.style.transform = "translateY(-100%)";
+        } else {
+          // Close any other open package details
+          document.querySelectorAll(".package-details").forEach((details) => {
+            details.style.display = "none";
+            details.style.opacity = "0";
+            details.style.transform = "translateY(-100%)";
+          });
+
+          // Open clicked package details
+          packageDetails.style.display = "block";
+          packageDetails.style.opacity = "1";
+          packageDetails.style.transform = "translateY(0)";
         }
       });
-    });
-  }
+    }
+  });
+}
 
-  // Call slideshow function when page loads
+// Initialize everything when DOM is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
   createSlideshow();
+  setupPackageInteraction();
 });
