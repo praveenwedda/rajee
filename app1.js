@@ -25,7 +25,14 @@ window.addEventListener("scroll", () => {
     window.scrollY > 50 ? "rgba(44, 62, 80, 0.9)" : "rgb(44, 62, 80)";
 });
 
-const slideshowImages = ["images/slideshow1.jpeg", "images/slideshow2.jpg"];
+const slideshowImages = [
+  "./images/slideshow1.jpg",
+  "./images/slideshow2.jpg",
+  "./images/slideshow3.jpg",
+  "./images/slideshow4.jpg",
+  ,
+  "./images/slideshow5.jpg",
+];
 
 function createSlideshow() {
   const slideshowContainer = document.getElementById("heroSlideshow");

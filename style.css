@@ -69,20 +69,57 @@ nav ul li a:hover {
 }
 /* Hero Section with Advanced Styling */
 .hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-    url("https://api.placeholder.com/1920x1080?text=Sri+Lanka+Landscape");
-  background-size: cover;
-  background-position: center;
+  position: relative;
+  background: none;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
   text-align: center;
-  padding: 200px 0;
-  position: relative;
+}
+.hero-slideshow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.hero-slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+
 .hero-content {
+  position: relative;
+  z-index: 4;
   max-width: 800px;
-  margin: 0 auto;
-  animation: fadeIn 1.5s ease-out;
+  padding: 0 20px;
 }
 @keyframes fadeIn {
   from {
