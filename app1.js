@@ -119,3 +119,35 @@ document.addEventListener("DOMContentLoaded", () => {
   createSlideshow();
   setupPackageInteraction();
 });
+
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  // Get form data
+  const formData = new FormData(this);
+
+  // Convert to URL encoded string
+  const data = new URLSearchParams(formData).toString();
+
+  // Replace with your Google Apps Script web app URL
+  const scriptURL =
+    "https://script.google.com/macros/s/AKfycbyES8q8-RPFgeVQJIXNwlW3iAmBoHWGz7U0lp9nYAHtNJBVEKVcHlFf9MevhlD2dHI/exec";
+
+  // Send data to Google Sheets
+  fetch(scriptURL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: data,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      alert("Form submitted successfully!");
+      document.getElementById("myForm").reset();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert("Error submitting form");
+    });
+});
