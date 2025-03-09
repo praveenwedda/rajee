@@ -124,14 +124,18 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
   // Get form data
-  const formData = new FormData(this);
+  const form = this;
+  const formData = new FormData(form);
 
   // Convert to URL encoded string
   const data = new URLSearchParams(formData).toString();
 
   // Replace with your Google Apps Script web app URL
   const scriptURL =
-    "https://script.google.com/macros/s/AKfycbyES8q8-RPFgeVQJIXNwlW3iAmBoHWGz7U0lp9nYAHtNJBVEKVcHlFf9MevhlD2dHI/exec";
+    "https://script.google.com/macros/s/AKfycbwIJ3N_o1xQOmXS2AydHa8C-g9LBLllfi-kWSFkJt3WxWpYJr-IQfXkvDvlqVrg_is/exec";
+
+  // For debugging - log what we're sending
+  console.log("Sending data:", data);
 
   // Send data to Google Sheets
   fetch(scriptURL, {
@@ -140,14 +144,31 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: data,
+    redirect: "follow",
+    mode: "cors",
   })
-    .then((response) => response.json())
-    .then((data) => {
-      alert("Form submitted successfully!");
-      document.getElementById("myForm").reset();
+    .then((response) => {
+      console.log("Raw response:", response);
+      return response.text();
+    })
+    .then((text) => {
+      console.log("Response text:", text);
+      try {
+        const json = JSON.parse(text);
+        console.log("Parsed JSON:", json);
+        if (json.result === "success") {
+          alert("Form submitted successfully!");
+          form.reset();
+        } else {
+          alert("Error: " + (json.error || "Unknown error"));
+        }
+      } catch (e) {
+        console.error("Error parsing response:", e);
+        alert("Received non-JSON response from server");
+      }
     })
     .catch((error) => {
       console.error("Error:", error);
-      alert("Error submitting form");
+      alert("Error submitting form: " + error.message);
     });
 });
